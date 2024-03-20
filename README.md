@@ -6,11 +6,13 @@
 
 	This installs depedencies
 
-2. Run `yarn dev`
+2. Create a `.env` file and add the ENV values
+
+3. Run `yarn dev`
 
 	This will startt the app
 
-3. Open   `http://localhost:3000/` on your browser. Ensure you are not running an app on this port.
+4. Open   `http://localhost:3000/` on your browser. Ensure you are not running an app on this port.
 
 
 
