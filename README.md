@@ -6,7 +6,12 @@
 
 	This installs depedencies
 
-2. Create a `.env` file and add the ENV values
+2. Create an `.env` file and add the following values
+```js
+	NEXT_PUBLIC_BASE_URL=https://api.openweathermap.org
+	NEXT_PUBLIC_API_KEY=1093445eb7b9362f8d97474f6fbc969c
+```
+
 
 3. Run `yarn dev`
 
