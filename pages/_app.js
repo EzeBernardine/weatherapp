@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import 'react-toastify/dist/ReactToastify.css';
 import { ProviderContext } from "../state/provider";
 import Head from "next/head";
 import { theme } from "../config/theme";
