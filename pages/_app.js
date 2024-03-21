@@ -27,11 +27,11 @@ function MyApp({ Component, pageProps }) {
 				<meta property="og:type" content="website" />
 				<meta property="og:author" content="weather-app" />
 				<meta property="og:title" content="weather-app" />
-				<meta property="og:description" content="A simpler way to send and receive money from abroad." />
+				<meta property="og:description" content=" A weather app" />
 				<meta property="og:image" content="https://res.cloudinary.com/weather-app-au/image/" />
 				<meta property="og:image:alt" content="weather-app" />
-				<meta name="description" content="A simpler way to send and receive money from abroad." />
-				<meta name="keywords" content="weather-app, transfer money" />
+				<meta name="description" content="A weather app" />
+				<meta name="keywords" content="weather-app" />
 				<title> Weather app</title>
 			</Head>
 
