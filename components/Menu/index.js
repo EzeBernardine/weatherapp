@@ -1,49 +1,61 @@
 
-import { Button, DeleteButton, MainContainer, MenuContainer, SaerchContainer,   SecletContainer, SubContainer } from "./styles";
+import { Button, DeleteButton, MainContainer, MenuContainer, PlaceOrderButton, SaerchContainer, SecletContainer, SubContainer } from "./styles";
 
-import {    DropDownArrowsIcon, LocationIcon,   } from "../../public/assets/svg";
-import React, { useState }   from "react";
+import { DropDownArrowsIcon, LocationIcon, } from "../../public/assets/svg";
+import React, { useState } from "react";
 import * as _ from "underscore";
 import { Flex } from "../Box/styles";
 import { Bold } from "../fonts/styles";
 import Search from "../Search";
 import DropdownModal from "../Dropdown";
 import { UseContext } from "../../state/provider";
+import { useRouter } from "next/router";
 
 
 
-const Menu =  () => {
+const Menu = () => {
 	const { setLatitude, setLongitude, setUnit, setSearch } = UseContext();
-	const intiValue = {lat:   "", lon:  "", units: "standard"}
+	const intiValue = { lat: "", lon: "", units: "standard" }
 
 	const [state, setState] = useState(intiValue)
+	const { push } = useRouter()
 
- 
- 
-	 const Units = [
-		{name: "Standard", value: "standard",},
-		{name: "Metric", value: "metric",},
-		{name: "Imperial", value: "imperial",},
-	 ]
 
-    
+
+	const Units = [
+		{ name: "Standard", value: "standard", },
+		{ name: "Metric", value: "metric", },
+		{ name: "Imperial", value: "imperial", },
+	]
+
+
 	return (
 		<MenuContainer >
-			
+
 			<MainContainer justifyContent="space-between">
-				<Flex height="auto" width="max-content">
-					<LocationIcon height={30} width={30} colour={"Error.default"}/>
-					<Bold fontFamily={"regular"} weight="400" lineHeight="21" size="24"colour={ "common.black"}>
+				<Flex height="auto" width="max-content" onClick={() =>  push("/")}>
+					<LocationIcon height={30} width={30} colour={"Error.default"} />
+					<Bold fontFamily={"regular"} weight="400" lineHeight="21" size="24" colour={"common.black"}>
 						WeatherApp
 					</Bold>
 				</Flex>
 
+				<PlaceOrderButton
+					disabled={!state.lat && !state.lon && !state.units}
+					onClick={() =>  push("/order")}
+				>Place Order
+				</PlaceOrderButton>
+
+
 				<SubContainer width="auto" wrap="nowrap">
-					<SaerchContainer width="auto" wrap="nowrap" radius="8px"> 
-						<Search delay={0} noIcon  placeholder="Lat" type="number"  handleChange={e => setState(prev =>( {...prev,lat: e }))} value={state.lat}/>
-						<Search  delay={0}  noIcon  placeholder="Lon" type="number" handleChange={e => setState(prev =>( {...prev, lon: e }))}  value={state.lon}/>
+					<SaerchContainer width="auto" wrap="nowrap" radius="8px">
+						<Search delay={0} noIcon placeholder="Lat" type="number" handleChange={e => setState(prev => ({ ...prev, lat: e }))} value={state.lat} />
+						<Search delay={0} noIcon placeholder="Lon" type="number" handleChange={e => setState(prev => ({ ...prev, lon: e }))} value={state.lon} />
 					</SaerchContainer>
- 
+
+
+
+
 
 					<SecletContainer margin=" 0 10px">
 						<DropdownModal
@@ -55,35 +67,35 @@ const Menu =  () => {
 							hovBgColor="Black.80"
 							searchField={false}
 							clearSelected
-							initial={  state.units || "Select unit"}
-							icon={<DropDownArrowsIcon height={12} width={12} colour={"Black.20"}/>}
-							handleSelect={(selected) =>   setState(prev =>( {...prev, units: selected })) }
+							initial={state.units || "Select unit"}
+							icon={<DropDownArrowsIcon height={12} width={12} colour={"Black.20"} />}
+							handleSelect={(selected) => setState(prev => ({ ...prev, units: selected }))}
 							data={Units?.map(data => (
-										{
-											displayedValue: data.name, 
-											returnedValue: data.value,
-											dropdownValue: data.name,
-										}
-									))
+								{
+									displayedValue: data.name,
+									returnedValue: data.value,
+									dropdownValue: data.name,
+								}
+							))
 							}
 						/>
 					</SecletContainer>
 
 
 					<Button
-						disabled={!state.lat && !state.lon &&  !state.units}
+						disabled={!state.lat && !state.lon && !state.units}
 						onClick={() => {
 							state.lat && setLatitude(state.lat)
 							state.lon && setLongitude(state.lon)
 							state.units && setUnit(state.units)
-							if(state.lat &&  state.lon){
+							if (state.lat && state.lon) {
 								setSearch("")
 							}
 						}}
 					>Search</Button>
-					
+
 					{
-						state.lat || state.lon  ?  
+						state.lat || state.lon ?
 							<DeleteButton
 								onClick={() => {
 									setLatitude("")
@@ -100,5 +112,5 @@ const Menu =  () => {
 		</MenuContainer>
 	);
 };
- 
+
 export default Menu;

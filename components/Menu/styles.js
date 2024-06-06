@@ -2,8 +2,7 @@
 
 import styled from "styled-components";
 import { Flex } from "../Box/styles";
-
-  
+ 
 export const MenuContainer =  styled("menu")`
     background-color:${({ theme}) => theme.palette.common.white};
 	position: fixed;
@@ -77,6 +76,15 @@ export const Button =  styled("button")`
 	}
 `;
  
+
+export const PlaceOrderButton =  styled(Button)`
+	background-color: red;
+	padding: 10px 12px;
+	border-radius: 20px;
+	color: white;
+`;
+ 
+
  
 export const DeleteButton =  styled("button")`
     color:   ${({ theme}) => theme.palette.Error["80"]};
