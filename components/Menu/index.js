@@ -33,18 +33,22 @@ const Menu = () => {
 		<MenuContainer >
 
 			<MainContainer justifyContent="space-between">
-				<Flex height="auto" width="max-content" onClick={() =>  push("/")}>
+				<Flex height="auto" width="max-content" onClick={() => push("/")}>
 					<LocationIcon height={30} width={30} colour={"Error.default"} />
 					<Bold fontFamily={"regular"} weight="400" lineHeight="21" size="24" colour={"common.black"}>
 						WeatherApp
 					</Bold>
 				</Flex>
 
-				<PlaceOrderButton
-					disabled={!state.lat && !state.lon && !state.units}
-					onClick={() =>  push("/order")}
-				>Place Order
-				</PlaceOrderButton>
+				{
+					process.env.PORTAL_URL ?
+						<PlaceOrderButton
+							disabled={!state.lat && !state.lon && !state.units}
+							onClick={() => push("/order")}
+						>Place Order
+						</PlaceOrderButton>
+						: null
+				}
 
 
 				<SubContainer width="auto" wrap="nowrap">
